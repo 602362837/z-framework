@@ -28,7 +28,7 @@ public final class ConfigCenter {
 		defaulConfigBeanScanImpl = StaticVariable.defaultConfigBeanScanPath;
 		defaultBeanScanImpl = StaticVariable.defaultBeanScanPath;
 		defaultLoadScanImpl = StaticVariable.defaultLoadScanPath;
-		resourceReader = ResourceReaderBuilder.build(defaultResourceReader,ZApplication.getResourcePath());
+		resourceReader = ResourceReaderBuilder.build(defaultResourceReader, ZApplication.getResourcePath());
 	}
 
 	/**
@@ -80,6 +80,15 @@ public final class ConfigCenter {
 	 */
 	public static Map<String, String> getBeans() {
 		return resourceReader.readBeans();
+	}
+
+	/**
+	 * 用户是否手工设置了bean
+	 * 
+	 * @return
+	 */
+	public static boolean hasSetBeans() {
+		return resourceReader.hasBeans();
 	}
 
 }

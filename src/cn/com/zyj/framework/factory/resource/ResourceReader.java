@@ -47,6 +47,13 @@ public interface ResourceReader {
 	 */
 	public String readLoadScanImpl();
 
+	/**
+	 * 用户是否手工配置了bean
+	 * 
+	 * @return
+	 */
+	public boolean hasBeans();
+
 	public final static class Config {
 		/**
 		 * 设置属性值

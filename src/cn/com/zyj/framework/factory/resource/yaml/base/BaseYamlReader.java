@@ -36,4 +36,9 @@ public abstract class BaseYamlReader implements ResourceReader {
 	public String readLoadScanImpl() {
 		return ResourceReader.Config.getLoadScanImpl();
 	}
+
+	@Override
+	public boolean hasBeans() {
+		return ResourceReader.Config.getBeans() != null && ResourceReader.Config.getBeans().size() > 0;
+	}
 }

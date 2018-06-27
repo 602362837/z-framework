@@ -28,4 +28,5 @@ public class DefaultYamlReader extends BaseYamlReader {
 		ResourceReader.Config.setConfig(configMap);
 
 	}
+
 }
