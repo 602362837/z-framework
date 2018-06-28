@@ -33,8 +33,22 @@ loadScanImpl:自定义加载器实现
 
 依赖包说明：
 jyaml-*.jar(建议使用jyaml-1.3.jar)
+javax.servlet-api-*.jar(建议使用javax.servlet-api-3.1.0.jar)
 
-------------------------------------------------------------------------------------------------------------------
+maven引入依赖示例：
+<dependency>
+	<groupId>org.jyaml</groupId>
+	<artifactId>jyaml</artifactId>
+	<version>1.3</version>
+</dependency>
+<!-- 1.0依赖此模块，其他版本将不再依赖 -->
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+	<version>3.1.0</version>
+</dependency>
+
+--------------------------------------------------------------------------------
 环境说明：
 建议使用jdk1.8
 
