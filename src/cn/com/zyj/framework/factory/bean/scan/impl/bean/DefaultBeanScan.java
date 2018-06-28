@@ -58,16 +58,13 @@ public final class DefaultBeanScan extends BaseBeanScan {
 	 * @param classPaths
 	 */
 	private void iteratePath(File file, List<String> classPaths) {
-		if (file.isDirectory()) {// 文件夹
-			// 文件夹我们就递归
+		if (file.isDirectory()) {
 			File[] files = file.listFiles();
 			for (File f1 : files) {
 				iteratePath(f1, classPaths);
 			}
-		} else {// 标准文件
-			// 标准文件我们就判断是否是class文件
+		} else {
 			if (file.getName().endsWith(".class")) {
-				// 如果是class文件我们就放入我们的集合中。
 				classPaths.add(file.getPath());
 			}
 		}
