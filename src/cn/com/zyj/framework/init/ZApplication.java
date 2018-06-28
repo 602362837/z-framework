@@ -1,13 +1,12 @@
 package cn.com.zyj.framework.init;
 
+import cn.com.zyj.framework.exception.InjectedScanException;
 import cn.com.zyj.framework.exception.ZApplicationException;
 import cn.com.zyj.framework.factory.bean.BeanCenter;
 import cn.com.zyj.framework.factory.bean.scan.BeanScan;
 import cn.com.zyj.framework.factory.bean.scan.ConfigBeanScan;
 import cn.com.zyj.framework.factory.bean.scan.LoadScan;
-import cn.com.zyj.framework.factory.resource.ResourceReaderBuilder;
 import cn.com.zyj.framework.resources.ConfigCenter;
-import cn.com.zyj.framework.resources.StaticVariable;
 import cn.com.zyj.framework.work.WorkHelper;
 
 /**
@@ -25,7 +24,6 @@ public final class ZApplication {
 	 * 资源加载器路径
 	 */
 	private static String resourcePath;
-	
 
 	/**
 	 * 配置bean扫描器
@@ -80,8 +78,7 @@ public final class ZApplication {
 			Class<?> scanClass = Class.forName(scanPath);
 			loadScanServer = (LoadScan) scanClass.newInstance();
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(0);
+			new InjectedScanException("装载配置load扫描器（加载器）发生错误", e.fillInStackTrace());
 		}
 	}
 
@@ -94,8 +91,7 @@ public final class ZApplication {
 			Class<?> scanClass = Class.forName(scanPath);
 			configBeanScanServer = (ConfigBeanScan) scanClass.newInstance();
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(0);
+			new InjectedScanException("装载配置bean扫描器发生错误", e.fillInStackTrace());
 		}
 	}
 
@@ -108,8 +104,7 @@ public final class ZApplication {
 			Class<?> scanClass = Class.forName(scanPath);
 			beanScanServer = (BeanScan) scanClass.newInstance();
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(0);
+			new InjectedScanException("装载bean扫描器发生错误", e.fillInStackTrace());
 		}
 	}
 
@@ -122,11 +117,13 @@ public final class ZApplication {
 	public static <V> V getBean(String beanId) {
 		return BeanCenter.getBean(beanId);
 	}
+
 	/**
 	 * 提供外部使用配置文件路径
+	 * 
 	 * @return
 	 */
-	public static String getResourcePath(){
+	public static String getResourcePath() {
 		return resourcePath;
 	}
 }
